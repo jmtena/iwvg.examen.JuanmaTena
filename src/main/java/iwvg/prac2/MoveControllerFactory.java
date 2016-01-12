@@ -56,7 +56,7 @@ public class MoveControllerFactory {
 		default:
 			//Case 9
 			break;
-	}
+		}
 	}
 	
 }

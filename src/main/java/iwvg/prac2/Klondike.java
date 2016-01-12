@@ -1,30 +1,24 @@
 package iwvg.prac2;
 
 public class Klondike {
-	public static int NUM_SUITS = 4;
-	public static int NUM_STRAIGHTS = 7;
 	
-	private Rug rug;
+	private Logic logic;
 	
-	private StartController startController;
-	
-	private MoveControllerFactory colocateControllerFactory;
-	
-	private StartView startView;
-	
-	private GameView gameView;
+	private KlondikeView view;
 	
 	public Klondike(){
-		Rug rug = new Rug();
-		colocateControllerFactory = new MoveControllerFactory(rug);
-		gameView = new GameView(colocateControllerFactory);
-		startController = new StartController(rug, colocateControllerFactory);
-		startView = new StartView(startController);
+		logic = new Logic();
+		view = new KlondikeView();
 	}
 	
 	public void play() {
-		startView.render();
-		gameView.render();
+		Controller controller;
+		do {
+			controller = logic.getController();
+			if (controller != null){
+				view.interact(controller);
+			}
+		} while (controller != null);
 	}
 	
 	public static void main(String[] args) {
