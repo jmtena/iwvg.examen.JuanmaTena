@@ -13,10 +13,11 @@ public class Klondike {
 	
 	public void play() {
 		Controller controller;
+		Option option = Option.START;
 		do {
-			controller = logic.getController();
+			controller = logic.getController(option);
 			if (controller != null){
-				view.interact(controller);
+				option = view.interact(controller);
 			}
 		} while (controller != null);
 	}
