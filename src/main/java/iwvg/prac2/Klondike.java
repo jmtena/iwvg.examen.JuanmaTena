@@ -1,5 +1,10 @@
 package iwvg.prac2;
 
+import iwvg.prac2.controllers.Controller;
+import iwvg.prac2.controllers.Logic;
+import iwvg.prac2.utils.Option;
+import iwvg.prac2.views.KlondikeView;
+
 public class Klondike {
 	
 	private Logic logic;
