@@ -2,7 +2,7 @@ package iwvg.prac2.views;
 
 import iwvg.prac2.controllers.ContinueController;
 import iwvg.prac2.controllers.Controller;
-import iwvg.prac2.controllers.ControllerVisitor;
+import iwvg.prac2.controllers.OperationControllerVisitor;
 import iwvg.prac2.controllers.DeckToDiscardController;
 import iwvg.prac2.controllers.DiscardToDeckController;
 import iwvg.prac2.controllers.DiscardToStraightController;
@@ -16,7 +16,7 @@ import iwvg.prac2.controllers.SuitToStraightController;
 import iwvg.prac2.controllers.TurnOverController;
 import iwvg.prac2.utils.Option;
 
-public class KlondikeView implements ControllerVisitor, View{
+public class KlondikeView implements OperationControllerVisitor, View{
 	
 	private StartView startView;
 	

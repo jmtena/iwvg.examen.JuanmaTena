@@ -4,6 +4,6 @@ import iwvg.prac2.utils.Option;
 
 public interface OperationController {
 	
-	Option accept(ControllerVisitor ControllerVisitor);
+	Option accept(OperationControllerVisitor ControllerVisitor);
 	
 }

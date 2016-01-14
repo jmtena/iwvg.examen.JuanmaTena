@@ -11,7 +11,7 @@ public class DeckToDiscardController extends MoveController{
 	}
 
 	@Override
-	public Option accept(ControllerVisitor controllerVisitor) {
+	public Option accept(OperationControllerVisitor controllerVisitor) {
 		return controllerVisitor.visit(this);
 	}
 	

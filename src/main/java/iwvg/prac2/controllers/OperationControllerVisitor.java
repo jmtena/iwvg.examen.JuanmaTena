@@ -2,7 +2,7 @@ package iwvg.prac2.controllers;
 
 import iwvg.prac2.utils.Option;
 
-public interface ControllerVisitor {
+public interface OperationControllerVisitor {
 
 	Option visit(StartController startController);
 	
