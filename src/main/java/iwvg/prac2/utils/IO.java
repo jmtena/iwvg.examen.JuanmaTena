@@ -1,25 +1,17 @@
 package iwvg.prac2.utils;
 
 public class IO {
-	Rug rug;
 	
-	public IO(Rug rug){
-		this.rug = rug;
+	public void write(String string) {
+		System.out.print(string);
+	}
+
+	public void writeln(String string) {
+		System.out.println(string);
 	}
 	
-	public void prinScreen(){
-		
+	public void writeln() {
+		System.out.println();
 	}
 	
-	public int readOption(){
-		return 0;
-	}
-	
-	public int readSuit(){
-		return 0;
-	}
-	
-	public int readStraight(){
-		return 0;
-	}
 }

@@ -27,6 +27,7 @@ public class SetOfCards {
 		int new_length = cards.length - 1;
 		Card[] new_cards = new Card[new_length];
 		
+		//Se elimina la ultima carta
 		for(int i=0; i<new_length; i++)
 			new_cards[i] = cards[i];
 		
@@ -50,7 +51,7 @@ public class SetOfCards {
 	public void shuffle(){
 		SetOfCards new_cards = new SetOfCards();
 		
-		//We choose randomly the cards
+		//Se barajan las cartas aleatoriamente
 		while(!this.isEmpty()){
 			Card card = this.getRandomCard();
 			new_cards.addCard(card);
@@ -71,6 +72,11 @@ public class SetOfCards {
 		int randomIntNumber = (int)Math.floor(Math.random()*(N-M+1)+M);
 		
 		return this.getCard(randomIntNumber);		
+	}
+	
+	public Card takeCard(){
+		int pos = cards.length - 1;
+		return this.getCard(pos);
 	}
 	
 	public int getLength(){
