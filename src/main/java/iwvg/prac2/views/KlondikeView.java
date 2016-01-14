@@ -46,50 +46,8 @@ public class KlondikeView implements OperationControllerVisitor, View{
 	}
 
 	@Override
-	public Option visit(DeckToDiscardController deckToDiscardController) {
-		return gameView.interact(deckToDiscardController);
-	}
-
-	@Override
-	public Option visit(DiscardToDeckController discardToDeckController) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public Option visit(DiscardToSuitController discardToSuitController) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public Option visit(DiscardToStraightController discardToStraightController) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public Option visit(StraightToSuitController straightToSuitController) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public Option visit(StraightToStraightController straightToStraightController) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public Option visit(SuitToStraightController suitToStraightController) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public Option visit(TurnOverController turnOverController) {
-		// TODO Auto-generated method stub
-		return null;
+	public Option visit(MoveController moveController) {
+		return gameView.interact(moveController);
 	}
 
 	@Override
