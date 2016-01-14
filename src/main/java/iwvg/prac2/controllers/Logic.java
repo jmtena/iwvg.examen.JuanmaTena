@@ -1,6 +1,7 @@
 package iwvg.prac2.controllers;
 
 import iwvg.prac2.models.Game;
+import iwvg.prac2.utils.Option;
 
 public class Logic {
 	private Game game;
@@ -22,30 +23,35 @@ public class Logic {
 	}
 	
 	public Controller getController(Option option){
+		//Tenemos tantos controladores como funcionalidades
+		//Un controlador por cada caso de uso (accion)
+		
 		switch(option){
 			case START:
 				return startController;
 			case MOVE_DECK_TO_DISCARD: 
-				return moveControllerFactory.getDeckToDiscardController;
+				return moveControllerFactory.getDeckToDiscardController();
 			case MOVE_DISCARD_TO_DECK: 
-				return moveControllerFactory.getDiscardToDeckController;
+				return moveControllerFactory.getDiscardToDeckController();
 			case MOVE_DISCARD_TO_SUIT:
-				return moveControllerFactory.getDiscardToSuitController;
+				return moveControllerFactory.getDiscardToSuitController();
 			case MOVE_DISCARD_TO_STRAIGHT:
-				return moveControllerFactory.getDiscardToStraightController;
+				return moveControllerFactory.getDiscardToStraightController();
 			case MOVE_STRAIGHT_TO_SUIT:
-				return moveControllerFactory.getStraightToSuitController;
+				return moveControllerFactory.getStraightToSuitController();
 			case MOVE_STRAIGHT_TO_STRAIGHT:
-				return moveControllerFactory.getStraightToStraightController;
+				return moveControllerFactory.getStraightToStraightController();
 			case MOVE_SUIT_TO_STRAIGHT:
-				return moveControllerFactory.getSuitToStraightController;
+				return moveControllerFactory.getSuitToStraightController();
 			case TURN_OVER:
-				return moveControllerFactory.getTurnOverController;
-			case CONTINUE:
-				return continueController;
+				return moveControllerFactory.getTurnOverController();
 			case EXIT:
 				return exitController;
+			case CONTINUE:
+				return continueController;
 			case EXIT_ALL:
+				return null;
+			default:
 				return null;
 		}
 	}

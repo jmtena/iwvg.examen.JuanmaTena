@@ -1,62 +1,63 @@
 package iwvg.prac2.controllers;
 
+import iwvg.prac2.models.Game;
+
 public class MoveControllerFactory {
-	private Rug rug;
+	private Game game;
 	
-	private MoveController moveFromDeckController;
+	private DeckToDiscardController deckToDiscardController;
 	
-	private MoveController moveFromDiscardController;
+	private DiscardToDeckController discardToDeckController;
 	
-	private MoveController[] moveFromPileController;
+	private DiscardToSuitController discardToSuitController;
 	
-	private MoveController[] moveFromStraightController;
+	private DiscardToStraightController discardToStraightController;
 	
-	private MoveController moveInStraight;
+	private StraightToSuitController straightToSuitController;
 	
-	private MoveController selectedMoveController;
+	private StraightToStraightController straightToStraightController;
 	
-	public MoveControllerFactory(Rug rug){
-		assert rug != null;
+	private SuitToStraightController suitToStraightController;
+	
+	private TurnOverController turnOverController;
+	
+	
+	public MoveControllerFactory(Game game){
+		assert game != null;
 		
-		this.rug = rug;
-		moveFromPileController = new MoveController[Klondike.NUM_SUITS];
-		moveFromStraightController = new MoveController[Klondike.NUM_STRAIGHTS];
-	}
-	
-	public MoveController getController() {
-		if (rug.complete())
-			return null;
-		
-		new MoveView(rug,this);
-		return selectedMoveController;
+		this.game = game;	
 	}
 
-	public MoveController getSelectedMoveController() {
-		return selectedMoveController;
+	public DeckToDiscardController getDeckToDiscardController() {
+		return deckToDiscardController;
 	}
 
-	public void setSelectedMoveController(int option, int origin, int destination) {
-		switch(option){
-		case 1:
-			this.selectedMoveController = this.moveFromDeckController;
-		case 2:
-			this.selectedMoveController = this.moveFromDiscardController;
-		case 3:
-			this.selectedMoveController = this.moveFromDiscardController;
-		case 4:
-			this.selectedMoveController = this.moveFromDiscardController;
-		case 5:
-			this.selectedMoveController = this.moveFromStraightController[origin];
-		case 6:
-			this.selectedMoveController = this.moveFromStraightController[origin];
-		case 7:
-			this.selectedMoveController = this.moveFromPileController[origin];
-		case 8:
-			this.selectedMoveController = this.moveInStraight;
-		default:
-			//Case 9
-			break;
-		}
+	public DiscardToDeckController getDiscardToDeckController() {
+		return discardToDeckController;
+	}
+
+	public DiscardToSuitController getDiscardToSuitController() {
+		return discardToSuitController;
+	}
+
+	public DiscardToStraightController getDiscardToStraightController() {
+		return discardToStraightController;
+	}
+
+	public StraightToSuitController getStraightToSuitController() {
+		return straightToSuitController;
+	}
+
+	public StraightToStraightController getStraightToStraightController() {
+		return straightToStraightController;
+	}
+
+	public SuitToStraightController getSuitToStraightController() {
+		return suitToStraightController;
+	}
+
+	public TurnOverController getTurnOverController() {
+		return turnOverController;
 	}
 	
 }

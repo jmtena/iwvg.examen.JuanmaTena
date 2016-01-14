@@ -1,5 +1,5 @@
 package iwvg.prac2.views;
 
-public class GameView {
-	
+public class ExitView {
+
 }

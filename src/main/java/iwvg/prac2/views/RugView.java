@@ -1,16 +1,18 @@
 package iwvg.prac2.views;
 
+import iwvg.prac2.controllers.Controller;
+
 public class RugView {
-	private RugForView rug;
-
-	public RugView(RugForView rug) {
-		this.rug = rug;
+	
+	private Controller controller;
+	
+	public RugView(Controller controller) {
+		assert controller != null;
+		this.controller = controller;
 	}
-
-	public void render() {
-		IO io = new IO();
+	
+	public void write(){
 		
-		//Aqui se debe mostrar el tapete por pantalla
-		io.write(rug);
 	}
+
 }
