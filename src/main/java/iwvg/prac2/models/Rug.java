@@ -1,25 +1,37 @@
 package iwvg.prac2.models;
 
-public class Rug implements RugForView{
+import iwvg.prac2.utils.Position;
+
+public class Rug{
 	private static int CARDS_PER_SUIT = 13;
 	
 	private SetOfCards deck;
 	
 	private SetOfCards discard;
 	
-	private SetOfCards[] suitPile;
+	//Suits
+	private SetOfCards spadesSuit;
 	
-	private SetOfCards[] straight;
+	private SetOfCards heartsSuit;
+	
+	private SetOfCards diamondsSuit;
+	
+	private SetOfCards clubsSuit;
+	
+	//Straights	
+	private SetOfCards[] straights;
 	
 	public Rug(){
 		deck = new SetOfCards();
 		discard = new SetOfCards();
 		
-		for(int i=0; i<Klondike.NUM_SUITS; i++)
-			suitPile[i] = new SetOfCards();
+		spadesSuit = new SetOfCards();
+		heartsSuit = new SetOfCards();
+		diamondsSuit = new SetOfCards();
+		clubsSuit = new SetOfCards();
 		
-		for(int i=0; i<Klondike.NUM_STRAIGHTS; i++)
-			straight[i] = new SetOfCards();
+		for(int i=0; i<Game.getNumStraights(); i++)
+			straights[i] = new SetOfCards();
 		initialize();
 	}
 	
@@ -33,27 +45,27 @@ public class Rug implements RugForView{
 			case DISCARD:
 				return discard.getCard(pos);
 			case SUITPILE_OF_SPADES:
-				return suitPile[0].getCard(pos);
+				return suits[0].getCard(pos);
 			case SUITPILE_OF_HEARTS:
-				return suitPile[1].getCard(pos);
+				return suits[1].getCard(pos);
 			case SUITPILE_OF_DIAMONDS:
-				return suitPile[2].getCard(pos);
+				return suits[2].getCard(pos);
 			case SUITPILE_OF_CLUBS:
-				return suitPile[3].getCard(pos);
+				return suits[3].getCard(pos);
 			case STRAIGHT_ONE:
-				return straight[0].getCard(pos);
+				return straights[0].getCard(pos);
 			case STRAIGHT_TWO:
-				return straight[1].getCard(pos);
+				return straights[1].getCard(pos);
 			case STRAIGHT_THREE:
-				return straight[2].getCard(pos);
+				return straights[2].getCard(pos);
 			case STRAIGHT_FOUR:
-				return straight[3].getCard(pos);
+				return straights[3].getCard(pos);
 			case STRAIGHT_FIVE:
-				return straight[4].getCard(pos);
+				return straights[4].getCard(pos);
 			case STRAIGHT_SIX:
-				return straight[5].getCard(pos);
+				return straights[5].getCard(pos);
 			case STRAIGHT_SEVEN:
-				return straight[6].getCard(pos);
+				return straights[6].getCard(pos);
 			default:
 					return null;
 		}
@@ -90,8 +102,8 @@ public class Rug implements RugForView{
 			}
 		}
 		
-		for(int i=0; i<this.straight.length; i++){
-			if (!straight[i].isEmpty()){
+		for(int i=0; i<this.straights.length; i++){
+			if (!straights[i].isEmpty()){
 				empty_straights = false;
 				break;
 			}
@@ -99,5 +111,33 @@ public class Rug implements RugForView{
 		
 		complete = empty_deck && empty_discard && full_suitPiles && empty_straights;
 		return complete;
+	}
+	
+	public SetOfCards getDeck(){
+		return this.deck;
+	}
+	
+	public SetOfCards getDiscard(){
+		return this.discard;
+	}
+	
+	public SetOfCards getSpadesPile(){
+		return this.spadesSuit;
+	}
+
+	public SetOfCards getHeartsPile(){
+		return this.heartsSuit;
+	}
+	
+	public SetOfCards getDiamondsPile(){
+		return this.diamondsSuit;
+	}
+
+	public SetOfCards getClubsPile(){
+		return this.clubsSuit;
+	}
+
+	public SetOfCards getStraight(int pos){
+		return this.straights[pos];
 	}
 }

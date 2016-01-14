@@ -15,6 +15,34 @@ public class Game {
 		rug = new Rug();
 	}
 	
+	public SetOfCards getDeck(){
+		return rug.getDeck();
+	}
+	
+	public SetOfCards getDiscard(){
+		return rug.getDiscard();
+	}
+	
+	public SetOfCards getSpadesPile(){
+		return rug.getSpadesPile();
+	}
+
+	public SetOfCards getHeartsPile(){
+		return rug.getHeartsPile();
+	}
+	
+	public SetOfCards getDiamondsPile(){
+		return rug.getDiamondsPile();
+	}
+
+	public SetOfCards getClubsPile(){
+		return rug.getClubsPile();
+	}
+
+	public SetOfCards getStraight(int pos){
+		return rug.getStraight(pos);
+	}
+	
 	public Rug getRug() {
 		return rug;
 	}

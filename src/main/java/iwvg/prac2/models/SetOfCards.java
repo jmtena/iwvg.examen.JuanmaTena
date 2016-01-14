@@ -90,4 +90,18 @@ public class SetOfCards {
 	public Card[] getSetOfCards(){
 		return this.cards;
 	}
+	
+	@Override
+	public String toString(){
+		String set = "";
+		
+		for(int i=0; i<cards.length-1; i++){
+			set += "[";
+		}
+		
+		Card card = this.getCard(cards.length-1);
+		set += "[" + card.getNumber() + "," + card.getSuit() +"]";
+		
+		return set;
+	}
 }

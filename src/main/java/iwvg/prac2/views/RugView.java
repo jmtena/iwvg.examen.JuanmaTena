@@ -17,21 +17,18 @@ public class RugView {
 		IO io = new IO();
 		
 		io.writeln("===========================");
-		io.write("Baraja: ");
-		
-		io.write("Descarte: ");
-		
-		io.write("Picas: ");
-		
-		io.write("Corazones: ");
-		
-		io.write("Rombos: ");
-		
-		io.write("Treboles");
+		io.write("Baraja: " + (controller.getDeck().getLength()==0 ? "<vacio>":"[X,X]"));
+		io.write("Descarte: " + controller.getDiscard().toString());
+		io.write("Picas: " + controller.getSpadesPile().toString());
+		io.write("Corazones: " + controller.getHeartsPile().toString());
+		io.write("Rombos: " + controller.getDiamondsPile().toString());
+		io.write("Treboles" + controller.getClubsPile().toString());
 		
 		for (int i=0; i<Game.getNumStraights(); i++){
-			io.write("Escalera " + i + ": ");
-		}			
+			io.write("Escalera " + (i+1) + ": " + controller.getStraight(i).toString());
+		}
+		
+		new MenuView().write();
 	}
 
 }
