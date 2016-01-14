@@ -3,7 +3,7 @@ package iwvg.prac2.views;
 import iwvg.prac2.controllers.StartController;
 import iwvg.prac2.utils.Option;
 
-public class StartView {
+public class StartView{
 	
 	public Option interact(StartController startController){		
 		startController.start();
