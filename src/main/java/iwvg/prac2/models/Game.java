@@ -6,13 +6,20 @@ public class Game {
 	
 	private Rug rug;
 	
-	private static final int NUM_SUITS = 4;
 	private static final int NUM_STRAIGHTS = 7;
 	private static final int NUM_OPTIONS = 9;
 	
 	public Game(){
 		state = State.IN_GAME;
 		rug = new Rug();
+	}
+	
+	public void shuffle(){
+		rug.shuffle();
+	}
+	
+	public void distribute(){
+		rug.distribute_cards();
 	}
 	
 	public SetOfCards getDeck(){
@@ -45,10 +52,6 @@ public class Game {
 	
 	public Rug getRug() {
 		return rug;
-	}
-
-	public static int getNumSuits() {
-		return NUM_SUITS;
 	}
 
 	public static int getNumStraights() {

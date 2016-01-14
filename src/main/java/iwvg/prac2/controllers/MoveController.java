@@ -1,9 +1,12 @@
 package iwvg.prac2.controllers;
 
-public class MoveController extends Controller{
-	Rug rug;
+import iwvg.prac2.models.Game;
+import iwvg.prac2.utils.Option;
+
+public abstract class MoveController extends Controller{
 	
-	public MoveController(Rug rug){
-		this.rug = rug;
+	public MoveController(Game game){
+		super(game);
 	}
+	
 }

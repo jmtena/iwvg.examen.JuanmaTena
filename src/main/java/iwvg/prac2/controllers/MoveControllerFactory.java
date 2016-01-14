@@ -24,11 +24,14 @@ public class MoveControllerFactory {
 	
 	public MoveControllerFactory(Game game){
 		assert game != null;
-		
 		this.game = game;	
 	}
 
 	public DeckToDiscardController getDeckToDiscardController() {
+		if (deckToDiscardController==null){
+			deckToDiscardController = new DeckToDiscardController(game);
+		}
+		
 		return deckToDiscardController;
 	}
 

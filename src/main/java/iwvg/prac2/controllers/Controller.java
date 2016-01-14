@@ -4,8 +4,8 @@ import iwvg.prac2.models.Game;
 import iwvg.prac2.models.SetOfCards;
 
 public abstract class Controller implements OperationController{
-		
-	private Game game;
+	
+	protected Game game;
 	
 	public Controller (Game game){
 		this.game = game;

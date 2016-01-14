@@ -1,15 +1,16 @@
 package iwvg.prac2.models;
 
+import iwvg.prac2.utils.Orientation;
 import iwvg.prac2.utils.Position;
 
 public class Rug{
-	private static int CARDS_PER_SUIT = 13;
 	
+	//Baraja y descarte
 	private SetOfCards deck;
 	
 	private SetOfCards discard;
 	
-	//Suits
+	//Palos
 	private SetOfCards spadesSuit;
 	
 	private SetOfCards heartsSuit;
@@ -18,7 +19,7 @@ public class Rug{
 	
 	private SetOfCards clubsSuit;
 	
-	//Straights	
+	//Escaleras
 	private SetOfCards[] straights;
 	
 	public Rug(){
@@ -33,6 +34,27 @@ public class Rug{
 		for(int i=0; i<Game.getNumStraights(); i++)
 			straights[i] = new SetOfCards();
 		initialize();
+	}
+	
+	public void shuffle(){
+		deck.shuffle();
+	}
+	
+	public void distribute_cards(){
+		int n = Game.getNumStraights();
+		
+		for (int i = 0; i < n; i++){
+			int num_cards = n - i;
+			for(int j = 0; j < num_cards; j++){
+				Card card = deck.takeCard();
+				if (j==num_cards-1){
+					//Ultima carta de la escalera
+					card.turnOver();
+				}
+				straights[i].addCard(card);
+				deck.removeCard();
+			}
+		}
 	}
 	
 	public Card getCard(Position position){
@@ -72,19 +94,13 @@ public class Rug{
 	}
 	
 	private void initialize(){
-		//We put all the cards into the set "deck"
+		//Ponemos todas las cartas en la baraja
 		for(Suit s: Suit.values()){
 			for(CardNumber number : CardNumber.values()){
 				Card card = new Card(s,number,Orientation.FACE_DOWN);
 				deck.addCard(card);
 			}
-		}
-		deck.shuffle();
-		
-		for(int i=0; i<Klondike.NUM_STRAIGHTS; i++){
-			//Repartir las cartas entre las escaleras
-		}
-		
+		}		
 	}
 	
 	public boolean complete(){

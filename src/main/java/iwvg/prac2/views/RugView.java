@@ -3,10 +3,13 @@ package iwvg.prac2.views;
 import iwvg.prac2.controllers.Controller;
 import iwvg.prac2.models.Game;
 import iwvg.prac2.utils.IO;
+import iwvg.prac2.utils.Option;
 
 public class RugView {
 	
 	private Controller controller;
+	
+	private MenuView optionMenu;
 	
 	public RugView(Controller controller) {
 		assert controller != null;
@@ -28,7 +31,12 @@ public class RugView {
 			io.write("Escalera " + (i+1) + ": " + controller.getStraight(i).toString());
 		}
 		
-		new MenuView().write();
+		optionMenu = new MenuView();
+		optionMenu.write();
+	}
+	
+	public Option read(){
+		return optionMenu.read();
 	}
 
 }

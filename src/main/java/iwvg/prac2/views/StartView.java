@@ -1,14 +1,15 @@
 package iwvg.prac2.views;
 
 import iwvg.prac2.controllers.StartController;
-import iwvg.prac2.utils.IO;
+import iwvg.prac2.utils.Option;
 
 public class StartView {
 	
-	void interact(StartController startController){
-		IO io = new IO();
+	public Option interact(StartController startController){		
+		startController.start();
 		
-		io.writeln("JUEGO NUEVO");
-		new RugView(startController).write();
+		RugView rugView = new RugView(startController);
+		rugView.write();
+		return rugView.read();
 	}
 }

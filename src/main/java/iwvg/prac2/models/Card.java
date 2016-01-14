@@ -1,5 +1,7 @@
 package iwvg.prac2.models;
 
+import iwvg.prac2.utils.Orientation;
+
 public class Card {
 	private Suit suit;
 	private CardNumber number;
@@ -18,6 +20,10 @@ public class Card {
 	
 	public boolean isEqual(Card card){
 		return this.suit==card.getSuit() && this.number==card.getNumber();
+	}
+	
+	public void turnOver(){
+		orientation = (orientation==Orientation.FACE_DOWN) ? Orientation.FACE_UP:Orientation.FACE_DOWN;
 	}
 
 	public Suit getSuit() {
