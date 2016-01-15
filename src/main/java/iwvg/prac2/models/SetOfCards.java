@@ -34,7 +34,7 @@ public class SetOfCards {
 		cards = new_cards;
 	}
 	
-	private void removeCard(Card card){
+	public void removeCard(Card card){
 		int new_length = cards.length - 1;
 		Card[] new_cards = new Card[new_length];
 		

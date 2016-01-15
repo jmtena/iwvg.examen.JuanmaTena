@@ -79,10 +79,62 @@ public class Rug{
 			}
 		}
 		return error;
-		
 	}
 	
-	public Error turnOverCard(Position)
+	public Error moveCards(Position origin, Position destiny, int numCards){
+		Error error = null;
+		
+		SetOfCards originPile = getPile(origin);
+		SetOfCards destinyPile = getPile(destiny);
+		
+		if (originPile.getLength()==0){
+			error = Error.NO_CARDS;
+		}
+		else{
+			Card[] cards = new Card[numCards];
+			
+			//Cogemos las cartas de la escalera origen
+			cards = takeCards(originPile, numCards, error);
+				
+			if (error == null){
+				//Ponemos las cartas en la escalera destino en el orden inverso a como las hemos cogido para que queden igual 				
+				for(int i = numCards - 1; i >= 0; i--){
+					destinyPile.addCard(cards[i]);
+					originPile.removeCard(cards[i]);
+				}
+			}	
+		}
+		return error;
+	}
+		
+	public Error turnOverCard(Position pos){
+		SetOfCards straight = getPile(pos);
+		
+		Card card = straight.takeCard();
+		straight.removeCard();
+		card.turnOver();
+		straight.addCard(card);
+	}
+	
+	private Card[] takeCards(SetOfCards pile, int numCards, Error error){
+		Card[] cards = new Card[numCards];
+		
+		for (int i = 0; i < numCards; i++){
+			if (pile.getLength()==0){
+				error = Error.NOT_ENOUGH_CARDS;
+				cards = null;
+				break;
+			}
+			cards[i] = pile.takeCard();
+			if (cards[i].getOrientation()==Orientation.FACE_DOWN){
+				error = Error.CARD_FACE_DOWN;
+				cards = null;
+				break;
+			}
+		}
+		
+		return cards;
+	}
 	
 	private SetOfCards getPile(Position position){
 		switch(position){

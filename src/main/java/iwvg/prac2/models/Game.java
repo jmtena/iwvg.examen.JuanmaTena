@@ -28,6 +28,10 @@ public class Game {
 		return rug.moveCard(origin,destiny);
 	}
 	
+	public Error moveCards(Position origin, Position destiny, int numCards){
+		return rug.moveCards(origin,destiny,numCards);
+	}
+	
 	public Error turnOverCard(Position pos){
 		return rug.turnOverCard(pos);
 	}
@@ -58,10 +62,6 @@ public class Game {
 
 	public SetOfCards getStraight(int pos){
 		return rug.getStraight(pos);
-	}
-	
-	public Rug getRug() {
-		return rug;
 	}
 
 	public static int getNumStraights() {
