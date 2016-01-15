@@ -5,7 +5,8 @@ import iwvg.prac2.utils.Option;
 
 public class StartView{
 	
-	public Option interact(StartController startController){		
+	public Option interact(StartController startController){
+		assert startController != null;
 		startController.start();
 		
 		RugView rugView = new RugView(startController);

@@ -5,7 +5,8 @@ import iwvg.prac2.utils.Option;
 
 public class ExitView {
 
-	public Option interact(ExitController exitController){		
+	public Option interact(ExitController exitController){
+		assert exitController != null;
 		boolean exit = exitController.confirmExit();
 		
 		if (exit){

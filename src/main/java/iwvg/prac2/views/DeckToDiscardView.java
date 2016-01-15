@@ -8,7 +8,7 @@ import iwvg.prac2.controllers.Error;
 public class DeckToDiscardView {
 	
 	public Option interact(DeckToDiscardController deckToDiscardController) {
-		
+		assert deckToDiscardController != null;
 		Error error = deckToDiscardController.move();
 		
 		if (error == null){

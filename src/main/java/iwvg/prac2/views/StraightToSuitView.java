@@ -8,7 +8,7 @@ import iwvg.prac2.utils.Option;
 public class StraightToSuitView {
 
 	public Option interact(StraightToSuitController straightToSuitController) {
-		
+		assert straightToSuitController != null;
 		Error error = straightToSuitController.move();
 		
 		if (error == null){

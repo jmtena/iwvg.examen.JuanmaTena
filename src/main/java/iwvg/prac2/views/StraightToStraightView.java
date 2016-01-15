@@ -8,7 +8,7 @@ import iwvg.prac2.utils.Option;
 public class StraightToStraightView {
 	
 	public Option interact(StraightToStraightController straightToStraightController) {
-		
+		assert straightToStraightController != null;
 		Error error = straightToStraightController.move();
 		
 		if (error == null){

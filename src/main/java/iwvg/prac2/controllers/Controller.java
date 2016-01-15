@@ -8,6 +8,7 @@ public abstract class Controller implements OperationController{
 	protected Game game;
 	
 	public Controller (Game game){
+		assert game != null;
 		this.game = game;
 	}
 	

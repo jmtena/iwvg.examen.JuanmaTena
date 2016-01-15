@@ -8,7 +8,7 @@ import iwvg.prac2.utils.Option;
 public class TurnOverView {
 
 public Option interact(TurnOverController turnOverController) {
-		
+		assert turnOverController != null;
 		Error error = turnOverController.move();
 		
 		if (error == null){

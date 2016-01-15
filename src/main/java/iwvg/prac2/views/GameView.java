@@ -32,6 +32,7 @@ public class GameView implements MoveControllerVisitor{
 	
 	
 	public Option interact(MoveController moveController) {
+		assert moveController != null;
 		return moveController.accept(this);
 	}
 

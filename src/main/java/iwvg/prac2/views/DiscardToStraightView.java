@@ -8,7 +8,7 @@ import iwvg.prac2.utils.Option;
 public class DiscardToStraightView {
 	
 	public Option interact(DiscardToStraightController discardToStraightController) {
-		
+		assert discardToStraightController != null;
 		Error error = discardToStraightController.move();
 		
 		if (error == null){

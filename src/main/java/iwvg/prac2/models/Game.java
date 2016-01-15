@@ -16,6 +16,14 @@ public class Game {
 		rug = new Rug();
 	}
 	
+	public void changeState(){
+		state = State.FINISHED;
+	}
+	
+	public boolean isFinished(){
+		return state == State.FINISHED;
+	}
+	
 	public void shuffle(){
 		rug.shuffle();
 	}
@@ -25,14 +33,19 @@ public class Game {
 	}
 	
 	public Error moveCard(Position origin, Position destiny){
+		assert origin != null;
+		assert destiny != null;
 		return rug.moveCard(origin,destiny);
 	}
 	
 	public Error moveCards(Position origin, Position destiny, int numCards){
+		assert origin != null;
+		assert destiny != null;
 		return rug.moveCards(origin,destiny,numCards);
 	}
 	
 	public Error turnOverCard(Position pos){
+		assert pos != null;
 		return rug.turnOverCard(pos);
 	}
 	

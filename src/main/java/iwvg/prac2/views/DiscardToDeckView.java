@@ -8,7 +8,7 @@ import iwvg.prac2.utils.Option;
 public class DiscardToDeckView {
 	
 	public Option interact(DiscardToDeckController discardToDeckController) {
-		
+		assert discardToDeckController != null;
 		Error error = discardToDeckController.move();
 		
 		if (error == null){

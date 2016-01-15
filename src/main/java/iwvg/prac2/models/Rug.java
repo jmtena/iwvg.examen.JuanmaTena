@@ -59,6 +59,8 @@ public class Rug{
 	}
 	
 	public Error moveCard(Position origin, Position destiny){
+		assert origin != null;
+		assert destiny != null;
 		Error error;
 		
 		SetOfCards originPile = getPile(origin);
@@ -82,6 +84,8 @@ public class Rug{
 	}
 	
 	public Error moveCards(Position origin, Position destiny, int numCards){
+		assert origin != null;
+		assert destiny != null;
 		Error error = null;
 		
 		SetOfCards originPile = getPile(origin);
@@ -108,6 +112,7 @@ public class Rug{
 	}
 		
 	public Error turnOverCard(Position pos){
+		assert pos != null;
 		Error error;
 		SetOfCards straight = getPile(pos);
 		
@@ -126,6 +131,7 @@ public class Rug{
 	}
 	
 	private Card[] takeCards(SetOfCards pile, int numCards, Error error){
+		assert pile != null;
 		Card[] cards = new Card[numCards];
 		
 		for (int i = 0; i < numCards; i++){
@@ -146,6 +152,7 @@ public class Rug{
 	}
 	
 	private SetOfCards getPile(Position position){
+		assert position != null;
 		switch(position){
 			case DECK:
 				return deck;

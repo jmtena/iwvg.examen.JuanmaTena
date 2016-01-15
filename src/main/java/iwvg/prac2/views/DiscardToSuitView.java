@@ -8,7 +8,7 @@ import iwvg.prac2.utils.Option;
 public class DiscardToSuitView {
 	
 	public Option interact(DiscardToSuitController discardToSuitController) {
-		
+		assert discardToSuitController != null;
 		Error error = discardToSuitController.move();
 		
 		if (error == null){

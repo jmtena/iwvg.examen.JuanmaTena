@@ -8,17 +8,25 @@ public class Card {
 	private Orientation orientation;
 	
 	public Card(Suit suit, CardNumber number){
+		assert suit != null;
+		assert number != null;
+		
 		this.suit = suit;
 		this.number = number;
 	}
 	
 	public Card(Suit suit, CardNumber number, Orientation orientation){
+		assert suit != null;
+		assert number != null;
+		assert orientation != null;
+		
 		this.suit = suit;
 		this.number = number;
 		this.orientation = orientation;
 	}
 	
 	public boolean isEqual(Card card){
+		assert card != null;
 		return this.suit==card.getSuit() && this.number==card.getNumber();
 	}
 	

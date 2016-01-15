@@ -8,7 +8,7 @@ public class SetOfCards {
 	}
 	
 	public void addCard(Card new_card){
-		assert cards!= null;
+		assert new_card!= null;
 		
 		int new_length = cards.length + 1;
 		Card[] new_cards = new Card[new_length];
@@ -35,6 +35,7 @@ public class SetOfCards {
 	}
 	
 	public void removeCard(Card card){
+		assert card!= null;
 		int new_length = cards.length - 1;
 		Card[] new_cards = new Card[new_length];
 		
