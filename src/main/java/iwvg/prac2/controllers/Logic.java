@@ -50,7 +50,6 @@ public class Logic {
 			case CONTINUE:
 				return continueController;
 			case EXIT_ALL:
-				return null;
 			default:
 				return null;
 		}

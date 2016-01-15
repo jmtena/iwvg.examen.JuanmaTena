@@ -52,14 +52,12 @@ public class KlondikeView implements OperationControllerVisitor, View{
 
 	@Override
 	public Option visit(ContinueController continueController) {
-		// TODO Auto-generated method stub
-		return null;
+		return continueView.interact(continueController);
 	}
 
 	@Override
 	public Option visit(ExitController exitController) {
-		// TODO Auto-generated method stub
-		return null;
+		return exitView.interact(exitController);
 	}
 	
 	

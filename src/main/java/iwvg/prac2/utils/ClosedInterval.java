@@ -1,4 +1,4 @@
-package ticTacToe.v400.utils;
+package iwvg.prac2.utils;
 
 public class ClosedInterval {
 

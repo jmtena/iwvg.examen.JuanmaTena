@@ -36,6 +36,21 @@ public class IO {
 		return input;
 	}
 	
+	public char readChar(String title) {
+		char charValue = ' ';
+		boolean ok = false;
+		do {
+			String input = this.readString(title);
+			if (input.length() != 1) {
+				this.writeError("caracter");
+			} else {
+				charValue = input.charAt(0);
+				ok = true;
+			}
+		} while (!ok);
+		return charValue;
+	}
+	
 	public void write(String string) {
 		System.out.print(string);
 	}
