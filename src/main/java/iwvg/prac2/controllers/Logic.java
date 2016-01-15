@@ -17,7 +17,7 @@ public class Logic {
 	public Logic() {
 		game = new Game();
 		startController = new StartController(game);
-		moveControllerFactory = new moveControllerFactory(game);
+		moveControllerFactory = new MoveControllerFactory(game);
 		exitController = new ExitController(game);
 		continueController = new ContinueController(game);
 	}

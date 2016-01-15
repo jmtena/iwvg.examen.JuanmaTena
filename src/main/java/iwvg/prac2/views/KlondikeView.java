@@ -3,17 +3,9 @@ package iwvg.prac2.views;
 import iwvg.prac2.controllers.ContinueController;
 import iwvg.prac2.controllers.Controller;
 import iwvg.prac2.controllers.OperationControllerVisitor;
-import iwvg.prac2.controllers.DeckToDiscardController;
-import iwvg.prac2.controllers.DiscardToDeckController;
-import iwvg.prac2.controllers.DiscardToStraightController;
-import iwvg.prac2.controllers.DiscardToSuitController;
 import iwvg.prac2.controllers.ExitController;
 import iwvg.prac2.controllers.MoveController;
 import iwvg.prac2.controllers.StartController;
-import iwvg.prac2.controllers.StraightToStraightController;
-import iwvg.prac2.controllers.StraightToSuitController;
-import iwvg.prac2.controllers.SuitToStraightController;
-import iwvg.prac2.controllers.TurnOverController;
 import iwvg.prac2.utils.Option;
 
 public class KlondikeView implements OperationControllerVisitor, View{

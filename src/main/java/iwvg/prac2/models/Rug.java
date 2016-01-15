@@ -2,7 +2,7 @@ package iwvg.prac2.models;
 
 import iwvg.prac2.controllers.Error;
 import iwvg.prac2.utils.Orientation;
-import iwvg.prac2.utils.Position;
+import iwvg.prac2.models.Position;
 
 public class Rug{
 	
@@ -108,12 +108,21 @@ public class Rug{
 	}
 		
 	public Error turnOverCard(Position pos){
+		Error error;
 		SetOfCards straight = getPile(pos);
 		
 		Card card = straight.takeCard();
-		straight.removeCard();
-		card.turnOver();
-		straight.addCard(card);
+		if (card.getOrientation()==Orientation.FACE_UP){
+			error = Error.CARD_FACE_UP;
+		}
+		else{
+			straight.removeCard();
+			card.turnOver();
+			straight.addCard(card);
+			error = null;
+		}
+		
+		return error;
 	}
 	
 	private Card[] takeCards(SetOfCards pile, int numCards, Error error){
@@ -184,15 +193,7 @@ public class Rug{
 		
 		boolean empty_deck = deck.isEmpty();
 		boolean empty_discard = discard.isEmpty();
-		boolean full_suitPiles = true;
 		boolean empty_straights = true;
-
-		for(int i=0; i<this.suitPile.length; i++){
-			if (suitPile[i].getLength() != CARDS_PER_SUIT){
-				full_suitPiles = false;
-				break;
-			}
-		}
 		
 		for(int i=0; i<this.straights.length; i++){
 			if (!straights[i].isEmpty()){
@@ -201,7 +202,7 @@ public class Rug{
 			}
 		}
 		
-		complete = empty_deck && empty_discard && full_suitPiles && empty_straights;
+		complete = empty_deck && empty_discard && empty_straights;
 		return complete;
 	}
 	
