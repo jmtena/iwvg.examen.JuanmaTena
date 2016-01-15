@@ -1,5 +1,7 @@
 package iwvg.prac2.models;
 
+import iwvg.prac2.controllers.Error;
+
 public class Game {
 	
 	private State state;
@@ -20,6 +22,10 @@ public class Game {
 	
 	public void distribute(){
 		rug.distribute_cards();
+	}
+	
+	public Error moveCard(Position origin, Position destiny){
+		return rug.moveCard(origin,destiny);
 	}
 	
 	public SetOfCards getDeck(){

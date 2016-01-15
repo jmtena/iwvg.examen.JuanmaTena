@@ -1,5 +1,6 @@
 package iwvg.prac2.models;
 
+import iwvg.prac2.controllers.Error;
 import iwvg.prac2.utils.Orientation;
 import iwvg.prac2.utils.Position;
 
@@ -57,37 +58,58 @@ public class Rug{
 		}
 	}
 	
-	public Card getCard(Position position){
-		Pile pile = position.getPile();
-		int pos = position.getPos();
+	public Error moveCard(Position origin, Position destiny){
+		Error error;
 		
-		switch(pile){
-			case DECK_OF_CARDS:
-				return deck.getCard(pos);
+		SetOfCards originPile = getPile(origin);
+		SetOfCards destinyPile = getPile(destiny);
+		
+		if (originPile.getLength()==0){
+			error = Error.NO_CARDS;
+		}
+		else{
+			Card card = originPile.takeCard();
+			if (card.getOrientation()==Orientation.FACE_DOWN){
+				error = Error.CARD_FACE_DOWN;
+			}
+			else{
+				destinyPile.addCard(card);
+				originPile.removeCard();
+				error = null;
+			}
+		}
+		return error;
+		
+	}
+	
+	private SetOfCards getPile(Position position){
+		switch(position){
+			case DECK:
+				return deck;
 			case DISCARD:
-				return discard.getCard(pos);
-			case SUITPILE_OF_SPADES:
-				return suits[0].getCard(pos);
-			case SUITPILE_OF_HEARTS:
-				return suits[1].getCard(pos);
-			case SUITPILE_OF_DIAMONDS:
-				return suits[2].getCard(pos);
-			case SUITPILE_OF_CLUBS:
-				return suits[3].getCard(pos);
+				return discard;
+			case SPADES:
+				return spadesSuit;
+			case HEARTS:
+				return heartsSuit;
+			case DIAMONDS:
+				return diamondsSuit;
+			case CLUBS:
+				return clubsSuit;
 			case STRAIGHT_ONE:
-				return straights[0].getCard(pos);
+				return straights[0];
 			case STRAIGHT_TWO:
-				return straights[1].getCard(pos);
+				return straights[1];
 			case STRAIGHT_THREE:
-				return straights[2].getCard(pos);
+				return straights[2];
 			case STRAIGHT_FOUR:
-				return straights[3].getCard(pos);
+				return straights[3];
 			case STRAIGHT_FIVE:
-				return straights[4].getCard(pos);
+				return straights[4];
 			case STRAIGHT_SIX:
-				return straights[5].getCard(pos);
+				return straights[5];
 			case STRAIGHT_SEVEN:
-				return straights[6].getCard(pos);
+				return straights[6];
 			default:
 					return null;
 		}
