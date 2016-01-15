@@ -8,7 +8,6 @@ public class DeckToDiscardController extends MoveController{
 
 	public DeckToDiscardController(Game game) {
 		super(game);
-		
 	}
 	
 	public Error move(){

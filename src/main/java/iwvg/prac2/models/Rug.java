@@ -82,6 +82,8 @@ public class Rug{
 		
 	}
 	
+	public Error turnOverCard(Position)
+	
 	private SetOfCards getPile(Position position){
 		switch(position){
 			case DECK:

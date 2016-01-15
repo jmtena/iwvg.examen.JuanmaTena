@@ -28,6 +28,10 @@ public class Game {
 		return rug.moveCard(origin,destiny);
 	}
 	
+	public Error turnOverCard(Position pos){
+		return rug.turnOverCard(pos);
+	}
+	
 	public SetOfCards getDeck(){
 		return rug.getDeck();
 	}
