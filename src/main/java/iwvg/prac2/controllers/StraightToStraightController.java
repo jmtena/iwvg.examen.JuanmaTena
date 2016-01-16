@@ -23,7 +23,6 @@ public class StraightToStraightController extends MoveController{
 		destiny = getPile(option_destiny);
 		
 		return this.game.moveCards(origin, destiny, num_cards);
-		
 	}
 	
 	private Position getPile(int option){

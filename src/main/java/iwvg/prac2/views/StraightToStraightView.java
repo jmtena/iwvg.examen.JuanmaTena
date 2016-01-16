@@ -19,11 +19,8 @@ public class StraightToStraightView {
 		else{
 			IO io = new IO();
 			io.write("ERROR!!! " + error.toString());
-			
-			MenuView optionMenu = new MenuView();
-			return optionMenu.read();
+			return new MenuView().read();
 		}
-
 	}
 	
 }

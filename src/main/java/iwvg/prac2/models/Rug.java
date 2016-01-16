@@ -62,31 +62,17 @@ public class Rug{
 		assert origin != null;
 		assert destiny != null;
 		Error error = null;
-		
 		SetOfCards originPile = getPile(origin);
 		SetOfCards destinyPile = getPile(destiny);
 		
-		if (originPile.getLength()==0){
-			error = new Error(ErrorType.NO_CARDS.toString());
-		}
-		else{
+		error = (originPile.getLength() > 0)? null:new Error(ErrorType.NO_CARDS.toString());
+		if (error==null){
 			Card card = originPile.takeCard();
-			if (card.getOrientation()==Orientation.FACE_DOWN){
-				error = new Error(ErrorType.CARD_FACE_DOWN.toString());
-			}
-			else{
-				boolean possibleMove;
-				if (isToSuitMove(destiny)){
-					possibleMove = isPosibleMoveToSuit(destinyPile, card);
-				}
-				else{ //Move to straight
-					possibleMove = isPosibleMoveToStraight(destinyPile, card);
-				}
+			error = (card.getOrientation()==Orientation.FACE_UP)? null:new Error(ErrorType.CARD_FACE_DOWN.toString());
+			if (error==null){
+				boolean possibleMove = isPosibleMove(destiny, destinyPile, card);
+				error = (possibleMove)? null:new Error("La carta " + originPile.takeCard().toString() + " no se puede poder sobre la carta " + destinyPile.takeCard().toString());
 				
-				if (!possibleMove){
-					error = new Error("La carta " + originPile.takeCard().toString() + " no se puede poder sobre la carta " + destinyPile.takeCard().toString());
-				}
-					
 				if (error == null){
 					destinyPile.addCard(card);
 					originPile.removeCard();
@@ -94,6 +80,17 @@ public class Rug{
 			}
 		}
 		return error;
+	}
+	
+	private boolean isPosibleMove(Position destiny, SetOfCards destinyPile, Card card){
+		boolean possibleMove;
+		
+		if (isToSuitMove(destiny))
+			possibleMove = isPosibleMoveToSuit(destinyPile, card);
+		else //Move to straight
+			possibleMove = isPosibleMoveToStraight(destinyPile, card);
+		
+		return possibleMove;
 	}
 	
 	private boolean isToSuitMove(Position pos){
@@ -124,39 +121,38 @@ public class Rug{
 		assert origin != null;
 		assert destiny != null;
 		Error error = null;
-		
 		SetOfCards originPile = getPile(origin);
 		SetOfCards destinyPile = getPile(destiny);
 		
-		if (originPile.getLength()==0){
-			error = new Error(ErrorType.NO_CARDS.toString());
-		}
-		else{
-			Card[] cards = new Card[numCards];
-			
-			//Cogemos las cartas de la escalera origen
-			cards = takeCards(originPile, numCards, error);
-				
-			if (error == null){
-				//Ponemos las cartas en la escalera destino en el orden inverso a como las hemos cogido para que queden igual 				
-				for(int i = numCards - 1; i >= 0; i--){
-					if (i==numCards-1){
-						boolean possibleMove = isPosibleMoveToStraight(destinyPile, cards[i]);
-						
-						if (!possibleMove){
-							error = new Error("La carta " + originPile.takeCard().toString() + " no se puede poder sobre la carta " + destinyPile.takeCard().toString());
-							break;
-						}
-						
-					}					
-					destinyPile.addCard(cards[i]);
-					originPile.removeCard(cards[i]);
-				}
-			}	
+		error = (originPile.getLength() > 0)? null:new Error(ErrorType.NO_CARDS.toString());
+		if (error==null){
+			error = moveCardsToStraight(originPile, destinyPile, numCards);
 		}
 		return error;
 	}
+	
+	private Error moveCardsToStraight(SetOfCards originPile, SetOfCards destinyPile, int numCards){
+		Error error = null;
 		
+		//Cogemos las cartas de la escalera origen
+		Card[] cards = takeCards(originPile, numCards, error);
+		if (error == null){
+			//Ponemos las cartas en la escalera destino en el orden inverso a como las hemos cogido para que queden igual 				
+			for(int i = numCards - 1; i >= 0; i--){
+				if (i==numCards-1){
+					boolean possibleMove = isPosibleMoveToStraight(destinyPile, cards[i]);					
+					if (!possibleMove){
+						error = new Error("La carta " + originPile.takeCard().toString() + " no se puede poder sobre la carta " + destinyPile.takeCard().toString());
+						break;
+					}					
+				}
+				destinyPile.addCard(cards[i]);
+				originPile.removeCard(cards[i]);
+			}
+		}
+		return error;
+	}
+	
 	public Error turnOverCard(Position pos){
 		assert pos != null;
 		Error error;
@@ -193,7 +189,6 @@ public class Rug{
 				break;
 			}
 		}
-		
 		return cards;
 	}
 	
@@ -267,7 +262,6 @@ public class Rug{
 				break;
 			}
 		}
-		
 		complete = empty_deck && empty_discard && empty_straights;
 		return complete;
 	}

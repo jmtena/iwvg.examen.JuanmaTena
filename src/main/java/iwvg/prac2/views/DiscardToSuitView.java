@@ -13,19 +13,9 @@ public class DiscardToSuitView {
 		Error error = discardToSuitController.move();
 		boolean finished = discardToSuitController.isGameFinished();
 		
-		IO io = new IO();
-		
 		if (finished){
-			//Comprobamos si se termina el juego al pasar una carta a palo
-			io.writeln("Enhorabuena!!! Ha completado el solitario");
-			YesNoDialog dialog = new YesNoDialog("Desea empezar un juego nuevo");
-			boolean startNewGame = dialog.read();
-			if (startNewGame){
-				return Option.START;
-			}
-			else{
-				return Option.EXIT_ALL;
-			}
+			Option option = checkEndGame();
+			return option;
 		}
 		else if (error == null){
 			RugView rugView = new RugView(discardToSuitController);
@@ -33,12 +23,25 @@ public class DiscardToSuitView {
 			return rugView.read();
 		}
 		else{
+			IO io = new IO();
 			io.write("ERROR!!! " + error.toString());
-			
-			MenuView optionMenu = new MenuView();
-			return optionMenu.read();
+			return new MenuView().read();
 		}
-
+	}
+	
+	private Option checkEndGame(){
+		//Comprobamos si se termina el juego al pasar una carta a palo
+		//Pasar una carta a un palo es el unico movimiento en el que se puede terminar el juego
+		IO io = new IO();
+		io.writeln("Enhorabuena!!! Ha completado el solitario");
+		YesNoDialog dialog = new YesNoDialog("Desea empezar un juego nuevo");
+		boolean startNewGame = dialog.read();
+		if (startNewGame){
+			return Option.START;
+		}
+		else{
+			return Option.EXIT_ALL;
+		}
 	}
 	
 }

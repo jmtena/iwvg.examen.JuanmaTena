@@ -29,8 +29,7 @@ public class MenuView {
 	}
 	
 	public Option read(){
-		int option = new LimitedIntDialog("Opción?", 1, numOptions).read();
-		
+		int option = new LimitedIntDialog("Opción?", 1, numOptions).read();	
 		switch(option){
 			case 1:
 				return Option.MOVE_DECK_TO_DISCARD;

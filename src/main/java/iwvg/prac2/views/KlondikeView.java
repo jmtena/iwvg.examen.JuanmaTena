@@ -52,6 +52,4 @@ public class KlondikeView implements OperationControllerVisitor, View{
 		return exitView.interact(exitController);
 	}
 	
-	
-	
 }

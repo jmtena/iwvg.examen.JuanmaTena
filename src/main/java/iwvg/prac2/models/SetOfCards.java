@@ -58,7 +58,6 @@ public class SetOfCards {
 			new_cards.addCard(card);
 			removeCard(card);
 		}
-		
 		this.cards = new_cards.getSetOfCards();
 	}
 	
