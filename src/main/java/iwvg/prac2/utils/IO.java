@@ -59,10 +59,6 @@ public class IO {
 		System.out.println(string);
 	}
 	
-	public void writeln() {
-		System.out.println();
-	}
-	
 	private void writeError(String formato) {
 		System.out.println("ERROR DE FORMATO! "
 				+ "Introduzca un valor con formato " + formato + ".");

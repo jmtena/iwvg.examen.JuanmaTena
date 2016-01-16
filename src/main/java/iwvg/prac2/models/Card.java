@@ -9,15 +9,6 @@ public class Card {
 	private Color color;
 	private Orientation orientation;
 	
-	public Card(Suit suit, CardNumber number){
-		assert suit != null;
-		assert number != null;
-		
-		this.suit = suit;
-		this.number = number;
-		this.color = (suit==Suit.HEARTS||suit==Suit.DIAMONDS) ? Color.RED:Color.BLACK;
-	}
-	
 	public Card(Suit suit, CardNumber number, Orientation orientation){
 		assert suit != null;
 		assert number != null;

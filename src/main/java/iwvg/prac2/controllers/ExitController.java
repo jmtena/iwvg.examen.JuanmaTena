@@ -6,7 +6,7 @@ import iwvg.prac2.utils.YesNoDialog;
 
 public class ExitController extends Controller{
 
-	protected ExitController(Game game){
+	public ExitController(Game game){
 		super(game);
 	}
 	

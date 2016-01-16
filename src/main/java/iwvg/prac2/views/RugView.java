@@ -5,7 +5,7 @@ import iwvg.prac2.models.Game;
 import iwvg.prac2.utils.IO;
 import iwvg.prac2.utils.Option;
 
-public class RugView {
+class RugView {
 	
 	private Controller controller;
 	

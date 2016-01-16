@@ -4,7 +4,7 @@ import iwvg.prac2.models.Game;
 
 public abstract class MoveController extends Controller implements MoveOperationController{
 	
-	public MoveController(Game game){
+	protected MoveController(Game game){
 		super(game);
 	}
 	

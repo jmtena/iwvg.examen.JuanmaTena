@@ -16,7 +16,7 @@ public class Game {
 		rug = new Rug();
 	}
 	
-	public void changeState(){
+	private void changeState(){
 		state = State.FINISHED;
 	}
 	

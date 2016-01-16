@@ -100,7 +100,7 @@ public class Rug{
 		return (pos==Position.SPADES) || (pos==Position.HEARTS) || (pos==Position.DIAMONDS) || (pos==Position.CLUBS);
 	}
 	
-	public boolean isPosibleMoveToStraight(SetOfCards pile, Card new_card){
+	private boolean isPosibleMoveToStraight(SetOfCards pile, Card new_card){
 		Card last_card = pile.takeCard();
 		
 		//Mismo color y carta anterior de mayor valor que la nueva
@@ -110,7 +110,7 @@ public class Rug{
 		return sameColor && correctOrder;
 	}
 	
-	public boolean isPosibleMoveToSuit(SetOfCards pile, Card new_card){
+	private boolean isPosibleMoveToSuit(SetOfCards pile, Card new_card){
 		Card last_card = pile.takeCard();
 		
 		//Mismo color y carta anterior de menor valor que la nueva
