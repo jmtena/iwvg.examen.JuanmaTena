@@ -1,10 +1,12 @@
 package iwvg.prac2.models;
 
+import iwvg.prac2.utils.Color;
 import iwvg.prac2.utils.Orientation;
 
 public class Card {
 	private Suit suit;
 	private CardNumber number;
+	private Color color;
 	private Orientation orientation;
 	
 	public Card(Suit suit, CardNumber number){
@@ -13,6 +15,7 @@ public class Card {
 		
 		this.suit = suit;
 		this.number = number;
+		this.color = (suit==Suit.HEARTS||suit==Suit.DIAMONDS) ? Color.RED:Color.BLACK;
 	}
 	
 	public Card(Suit suit, CardNumber number, Orientation orientation){
@@ -48,6 +51,15 @@ public class Card {
 
 	public void setOrientation(Orientation orientation) {
 		this.orientation = orientation;
+	}
+
+	public Color getColor() {
+		return color;
+	}
+	
+	@Override
+	public String toString(){
+		return "[" + number.toString() + "," + suit.toString() + "]";
 	}
 	
 }

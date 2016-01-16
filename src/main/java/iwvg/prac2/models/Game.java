@@ -35,13 +35,21 @@ public class Game {
 	public Error moveCard(Position origin, Position destiny){
 		assert origin != null;
 		assert destiny != null;
-		return rug.moveCard(origin,destiny);
+		
+		Error error = rug.moveCard(origin,destiny);
+		if (rug.isComplete())
+			this.changeState();
+		return error;
 	}
 	
 	public Error moveCards(Position origin, Position destiny, int numCards){
 		assert origin != null;
 		assert destiny != null;
-		return rug.moveCards(origin,destiny,numCards);
+		
+		Error error = rug.moveCards(origin,destiny,numCards);
+		if (rug.isComplete())
+			this.changeState();
+		return error;
 	}
 	
 	public Error turnOverCard(Position pos){

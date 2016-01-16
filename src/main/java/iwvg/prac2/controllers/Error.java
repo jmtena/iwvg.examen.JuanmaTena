@@ -1,20 +1,15 @@
 package iwvg.prac2.controllers;
 
-public enum Error {
-	
-	NO_CARDS("No hay cartas para mover"),
-	NOT_ENOUGH_CARDS("No hay suficientes cartas para mover"),
-	CARD_FACE_DOWN("No se puede mover una carta boca abajo"),
-	CARD_FACE_UP("La carta ya esta boca arriba");	
+public class Error {
 	
 	private String message;
 	
-	private Error(String message){
+	public Error(String message){
 		this.message = message;
 	}
-	
-	@Override
-	public String toString(){
+
+	public String getMessage() {
 		return message;
 	}
+	
 }

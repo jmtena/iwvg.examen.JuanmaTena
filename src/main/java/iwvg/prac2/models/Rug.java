@@ -1,6 +1,7 @@
 package iwvg.prac2.models;
 
 import iwvg.prac2.controllers.Error;
+import iwvg.prac2.controllers.ErrorType;
 import iwvg.prac2.utils.Orientation;
 import iwvg.prac2.models.Position;
 
@@ -61,26 +62,63 @@ public class Rug{
 	public Error moveCard(Position origin, Position destiny){
 		assert origin != null;
 		assert destiny != null;
-		Error error;
+		Error error = null;
 		
 		SetOfCards originPile = getPile(origin);
 		SetOfCards destinyPile = getPile(destiny);
 		
 		if (originPile.getLength()==0){
-			error = Error.NO_CARDS;
+			error = new Error(ErrorType.NO_CARDS.toString());
 		}
 		else{
 			Card card = originPile.takeCard();
 			if (card.getOrientation()==Orientation.FACE_DOWN){
-				error = Error.CARD_FACE_DOWN;
+				error = new Error(ErrorType.CARD_FACE_DOWN.toString());
 			}
 			else{
-				destinyPile.addCard(card);
-				originPile.removeCard();
-				error = null;
+				boolean possibleMove;
+				if (isToSuitMove(destiny)){
+					possibleMove = isPosibleMoveToSuit(destinyPile, card);
+				}
+				else{ //Move to straight
+					possibleMove = isPosibleMoveToStraight(destinyPile, card);
+				}
+				
+				if (!possibleMove){
+					error = new Error("La carta " + originPile.takeCard().toString() + " no se puede poder sobre la carta " + destinyPile.takeCard().toString());
+				}
+					
+				if (error == null){
+					destinyPile.addCard(card);
+					originPile.removeCard();
+				}
 			}
 		}
 		return error;
+	}
+	
+	private boolean isToSuitMove(Position pos){
+		return (pos==Position.SPADES) || (pos==Position.HEARTS) || (pos==Position.DIAMONDS) || (pos==Position.CLUBS);
+	}
+	
+	public boolean isPosibleMoveToStraight(SetOfCards pile, Card new_card){
+		Card last_card = pile.takeCard();
+		
+		//Mismo color y carta anterior de mayor valor que la nueva
+		boolean sameColor = (last_card.getColor()==new_card.getColor());
+		boolean correctOrder = (last_card.getNumber().compareTo(new_card.getNumber())) > 0;
+		
+		return sameColor && correctOrder;
+	}
+	
+	public boolean isPosibleMoveToSuit(SetOfCards pile, Card new_card){
+		Card last_card = pile.takeCard();
+		
+		//Mismo color y carta anterior de menor valor que la nueva
+		boolean sameColor = (last_card.getColor()==new_card.getColor());
+		boolean correctOrder = (last_card.getNumber().compareTo(new_card.getNumber())) < 0;
+		
+		return sameColor && correctOrder;
 	}
 	
 	public Error moveCards(Position origin, Position destiny, int numCards){
@@ -92,7 +130,7 @@ public class Rug{
 		SetOfCards destinyPile = getPile(destiny);
 		
 		if (originPile.getLength()==0){
-			error = Error.NO_CARDS;
+			error = new Error(ErrorType.NO_CARDS.toString());
 		}
 		else{
 			Card[] cards = new Card[numCards];
@@ -103,6 +141,15 @@ public class Rug{
 			if (error == null){
 				//Ponemos las cartas en la escalera destino en el orden inverso a como las hemos cogido para que queden igual 				
 				for(int i = numCards - 1; i >= 0; i--){
+					if (i==numCards-1){
+						boolean possibleMove = isPosibleMoveToStraight(destinyPile, cards[i]);
+						
+						if (!possibleMove){
+							error = new Error("La carta " + originPile.takeCard().toString() + " no se puede poder sobre la carta " + destinyPile.takeCard().toString());
+							break;
+						}
+						
+					}					
 					destinyPile.addCard(cards[i]);
 					originPile.removeCard(cards[i]);
 				}
@@ -118,7 +165,7 @@ public class Rug{
 		
 		Card card = straight.takeCard();
 		if (card.getOrientation()==Orientation.FACE_UP){
-			error = Error.CARD_FACE_UP;
+			error = new Error(ErrorType.CARD_FACE_UP.toString());
 		}
 		else{
 			straight.removeCard();
@@ -136,13 +183,13 @@ public class Rug{
 		
 		for (int i = 0; i < numCards; i++){
 			if (pile.getLength()==0){
-				error = Error.NOT_ENOUGH_CARDS;
+				error = new Error(ErrorType.NOT_ENOUGH_CARDS.toString());
 				cards = null;
 				break;
 			}
 			cards[i] = pile.takeCard();
 			if (cards[i].getOrientation()==Orientation.FACE_DOWN){
-				error = Error.CARD_FACE_DOWN;
+				error = new Error(ErrorType.CARD_FACE_DOWN.toString());
 				cards = null;
 				break;
 			}
@@ -195,12 +242,12 @@ public class Rug{
 		}		
 	}
 	
-	public boolean complete(){
+	public boolean isComplete(){
 		boolean complete=true;
 		
-		boolean empty_deck = deck.isEmpty();
-		boolean empty_discard = discard.isEmpty();
-		boolean empty_straights = true;
+		boolean empty_deck = deck.isEmpty(); //No hay cartas en baraja
+		boolean empty_discard = discard.isEmpty(); //No hay cartas en descarte
+		boolean empty_straights = true; //No hay cartas en escalera
 		
 		for(int i=0; i<this.straights.length; i++){
 			if (!straights[i].isEmpty()){
