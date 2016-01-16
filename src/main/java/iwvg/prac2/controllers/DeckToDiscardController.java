@@ -4,16 +4,16 @@ import iwvg.prac2.models.Game;
 import iwvg.prac2.models.Position;
 import iwvg.prac2.utils.Option;
 
-public class DeckToDiscardController extends MoveController{
+public class DeckToDiscardController extends MoveController {
 
 	public DeckToDiscardController(Game game) {
 		super(game);
 	}
-	
-	public Error move(){
+
+	public Error move() {
 		Position origin = Position.DECK;
 		Position destiny = Position.DISCARD;
-		return this.game.moveCard(origin,destiny);
+		return this.game.moveCard(origin, destiny);
 	}
 
 	@Override
@@ -25,5 +25,5 @@ public class DeckToDiscardController extends MoveController{
 	public Option accept(MoveControllerVisitor moveControllerVisitor) {
 		return moveControllerVisitor.visit(this);
 	}
-	
+
 }

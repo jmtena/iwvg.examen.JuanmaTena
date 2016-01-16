@@ -5,20 +5,21 @@ import iwvg.prac2.models.Position;
 import iwvg.prac2.utils.LimitedIntDialog;
 import iwvg.prac2.utils.Option;
 
-public class DiscardToSuitController extends MoveController{
+public class DiscardToSuitController extends MoveController {
 
 	public DiscardToSuitController(Game game) {
 		super(game);
 	}
-	
-	public Error move(){
+
+	public Error move() {
 		Position origin = Position.DISCARD;
 		Position destiny;
-		
-		int option = new LimitedIntDialog("A que palo desea mover [1.Picas 2.Corazones 3.Rombos 4.Treboles]?", 1, 4).read();
+
+		int option = new LimitedIntDialog("A que palo desea mover [1.Picas 2.Corazones 3.Rombos 4.Treboles]?", 1, 4)
+				.read();
 		destiny = this.game.getSuit(option);
-		
-		return this.game.moveCard(origin,destiny);
+
+		return this.game.moveCard(origin, destiny);
 	}
 
 	@Override
@@ -30,5 +31,5 @@ public class DiscardToSuitController extends MoveController{
 	public Option accept(MoveControllerVisitor moveControllerVisitor) {
 		return moveControllerVisitor.visit(this);
 	}
-	
+
 }

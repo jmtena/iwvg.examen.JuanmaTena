@@ -5,20 +5,20 @@ import iwvg.prac2.models.Position;
 import iwvg.prac2.utils.LimitedIntDialog;
 import iwvg.prac2.utils.Option;
 
-public class DiscardToStraightController extends MoveController{
+public class DiscardToStraightController extends MoveController {
 
 	public DiscardToStraightController(Game game) {
 		super(game);
 	}
-	
-	public Error move(){
+
+	public Error move() {
 		Position origin = Position.DISCARD;
 		Position destiny;
-		
+
 		int option = new LimitedIntDialog("A que escalera desea mover?", 1, 7).read();
 		destiny = this.game.getPile(option);
-		
-		return this.game.moveCard(origin,destiny);
+
+		return this.game.moveCard(origin, destiny);
 	}
 
 	@Override
@@ -30,5 +30,5 @@ public class DiscardToStraightController extends MoveController{
 	public Option accept(MoveControllerVisitor moveControllerVisitor) {
 		return moveControllerVisitor.visit(this);
 	}
-	
+
 }

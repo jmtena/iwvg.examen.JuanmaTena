@@ -4,9 +4,9 @@ import java.io.BufferedReader;
 import java.io.InputStreamReader;
 
 public class IO {
-	
+
 	private BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
-	
+
 	public int readInt(String title) {
 		int input = 0;
 		boolean ok = false;
@@ -20,7 +20,7 @@ public class IO {
 		} while (!ok);
 		return input;
 	}
-	
+
 	public String readString(String title) {
 		String input = null;
 		boolean ok = false;
@@ -35,7 +35,7 @@ public class IO {
 		} while (!ok);
 		return input;
 	}
-	
+
 	public char readChar(String title) {
 		char charValue = ' ';
 		boolean ok = false;
@@ -50,7 +50,7 @@ public class IO {
 		} while (!ok);
 		return charValue;
 	}
-	
+
 	public void write(String string) {
 		System.out.print(string);
 	}
@@ -58,10 +58,9 @@ public class IO {
 	public void writeln(String string) {
 		System.out.println(string);
 	}
-	
+
 	private void writeError(String formato) {
-		System.out.println("ERROR DE FORMATO! "
-				+ "Introduzca un valor con formato " + formato + ".");
+		System.out.println("ERROR DE FORMATO! " + "Introduzca un valor con formato " + formato + ".");
 	}
-	
+
 }

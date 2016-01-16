@@ -3,45 +3,45 @@ package iwvg.prac2.controllers;
 import iwvg.prac2.models.Game;
 import iwvg.prac2.models.SetOfCards;
 
-public abstract class Controller implements OperationController{
-	
+public abstract class Controller implements OperationController {
+
 	protected Game game;
-	
-	protected Controller (Game game){
+
+	protected Controller(Game game) {
 		assert game != null;
 		this.game = game;
 	}
-	
-	public SetOfCards getDeck(){
+
+	public SetOfCards getDeck() {
 		return game.getDeck();
 	}
-	
-	public SetOfCards getDiscard(){
+
+	public SetOfCards getDiscard() {
 		return game.getDiscard();
 	}
-	
-	public SetOfCards getSpadesPile(){
+
+	public SetOfCards getSpadesPile() {
 		return game.getSpadesPile();
 	}
 
-	public SetOfCards getHeartsPile(){
+	public SetOfCards getHeartsPile() {
 		return game.getHeartsPile();
 	}
-	
-	public SetOfCards getDiamondsPile(){
+
+	public SetOfCards getDiamondsPile() {
 		return game.getDiamondsPile();
 	}
 
-	public SetOfCards getClubsPile(){
+	public SetOfCards getClubsPile() {
 		return game.getClubsPile();
 	}
 
-	public SetOfCards getStraight(int pos){
+	public SetOfCards getStraight(int pos) {
 		return game.getStraight(pos);
 	}
-	
-	public boolean isGameFinished(){
+
+	public boolean isGameFinished() {
 		return game.isFinished();
 	}
-	
+
 }

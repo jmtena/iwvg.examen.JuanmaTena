@@ -6,21 +6,20 @@ import iwvg.prac2.utils.IO;
 import iwvg.prac2.utils.Option;
 
 public class SuitToStraightView {
-	
+
 	public Option interact(SuitToStraightController suitToStraightController) {
 		assert suitToStraightController != null;
 		Error error = suitToStraightController.move();
-		
-		if (error == null){
+
+		if (error == null) {
 			RugView rugView = new RugView(suitToStraightController);
 			rugView.write();
 			return rugView.read();
-		}
-		else{
+		} else {
 			IO io = new IO();
 			io.write("ERROR!!! " + error.toString());
 			return new MenuView().read();
 		}
 	}
-	
+
 }

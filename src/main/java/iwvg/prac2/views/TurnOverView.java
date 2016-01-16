@@ -7,20 +7,19 @@ import iwvg.prac2.utils.Option;
 
 public class TurnOverView {
 
-public Option interact(TurnOverController turnOverController) {
+	public Option interact(TurnOverController turnOverController) {
 		assert turnOverController != null;
 		Error error = turnOverController.move();
-		
-		if (error == null){
+
+		if (error == null) {
 			RugView rugView = new RugView(turnOverController);
 			rugView.write();
 			return rugView.read();
-		}
-		else{
+		} else {
 			IO io = new IO();
 			io.write("ERROR!!! " + error.toString());
 			return new MenuView().read();
 		}
 	}
-	
+
 }

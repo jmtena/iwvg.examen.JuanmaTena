@@ -8,25 +8,24 @@ import iwvg.prac2.controllers.MoveController;
 import iwvg.prac2.controllers.StartController;
 import iwvg.prac2.utils.Option;
 
-public class KlondikeView implements OperationControllerVisitor{
-	
+public class KlondikeView implements OperationControllerVisitor {
+
 	private StartView startView;
-	
+
 	private GameView gameView;
-	
+
 	private ContinueView continueView;
-	
+
 	private ExitView exitView;
-	
-	
-	public KlondikeView(){
+
+	public KlondikeView() {
 		startView = new StartView();
 		gameView = new GameView();
 		continueView = new ContinueView();
 		exitView = new ExitView();
 	}
-	
-	public Option interact(Controller controller){
+
+	public Option interact(Controller controller) {
 		assert controller != null;
 		return controller.accept(this);
 	}
@@ -50,5 +49,5 @@ public class KlondikeView implements OperationControllerVisitor{
 	public Option visit(ExitController exitController) {
 		return exitView.interact(exitController);
 	}
-	
+
 }

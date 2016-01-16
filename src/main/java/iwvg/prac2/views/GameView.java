@@ -12,25 +12,24 @@ import iwvg.prac2.controllers.SuitToStraightController;
 import iwvg.prac2.controllers.TurnOverController;
 import iwvg.prac2.utils.Option;
 
-public class GameView implements MoveControllerVisitor{
-	
+public class GameView implements MoveControllerVisitor {
+
 	private DeckToDiscardView deckToDiscardView;
-	
+
 	private DiscardToDeckView discardToDeckView;
-	
+
 	private DiscardToSuitView discardToSuitView;
-	
+
 	private DiscardToStraightView discardToStraightView;
-	
+
 	private StraightToSuitView straightToSuitView;
-	
+
 	private StraightToStraightView straightToStraightView;
-	
+
 	private SuitToStraightView suitToStraightView;
-	
+
 	private TurnOverView turnOverView;
-	
-	
+
 	public Option interact(MoveController moveController) {
 		assert moveController != null;
 		return moveController.accept(this);
@@ -75,5 +74,5 @@ public class GameView implements MoveControllerVisitor{
 	public Option visit(TurnOverController turnOverController) {
 		return turnOverView.interact(turnOverController);
 	}
-	
+
 }
