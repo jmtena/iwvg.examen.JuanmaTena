@@ -88,6 +88,42 @@ public class Game {
 	public SetOfCards getStraight(int pos){
 		return rug.getStraight(pos);
 	}
+	
+	public Position getPile(int option){
+		switch(option){
+			case 1:
+				return Position.STRAIGHT_ONE;
+			case 2:
+				return Position.STRAIGHT_TWO;
+			case 3:
+				return Position.STRAIGHT_THREE;
+			case 4:
+				return Position.STRAIGHT_FOUR;
+			case 5:
+				return Position.STRAIGHT_FIVE;
+			case 6:
+				return Position.STRAIGHT_SIX;
+			case 7:
+				return Position.STRAIGHT_SEVEN;
+			default:
+				return null;
+		}
+	}
+	
+	public Position getSuit(int option){
+		switch(option){
+			case 1:
+				return Position.SPADES;
+			case 2:
+				return Position.HEARTS;
+			case 3:
+				return Position.DIAMONDS;
+			case 4:
+				return Position.CLUBS;
+			default:
+				return null;
+		}
+	}
 
 	public static int getNumStraights() {
 		return NUM_STRAIGHTS;

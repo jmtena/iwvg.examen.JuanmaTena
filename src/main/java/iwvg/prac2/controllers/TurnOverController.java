@@ -15,30 +15,9 @@ public class TurnOverController extends MoveController{
 		Position pos;
 		
 		int option = new LimitedIntDialog("En que escalera desea voltear la carta?", 1, 7).read();
-		pos = getPile(option);
+		pos = this.game.getPile(option);
 		
 		return this.game.turnOverCard(pos);
-	}
-	
-	private Position getPile(int option){
-		switch(option){
-			case 1:
-				return Position.STRAIGHT_ONE;
-			case 2:
-				return Position.STRAIGHT_TWO;
-			case 3:
-				return Position.STRAIGHT_THREE;
-			case 4:
-				return Position.STRAIGHT_FOUR;
-			case 5:
-				return Position.STRAIGHT_FIVE;
-			case 6:
-				return Position.STRAIGHT_SIX;
-			case 7:
-				return Position.STRAIGHT_SEVEN;
-			default:
-				return null;
-		}
 	}
 
 	@Override

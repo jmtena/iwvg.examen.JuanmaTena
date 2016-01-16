@@ -16,30 +16,9 @@ public class DiscardToStraightController extends MoveController{
 		Position destiny;
 		
 		int option = new LimitedIntDialog("A que escalera desea mover?", 1, 7).read();
-		destiny = getPile(option);
+		destiny = this.game.getPile(option);
 		
 		return this.game.moveCard(origin,destiny);
-	}
-	
-	private Position getPile(int option){
-		switch(option){
-			case 1:
-				return Position.STRAIGHT_ONE;
-			case 2:
-				return Position.STRAIGHT_TWO;
-			case 3:
-				return Position.STRAIGHT_THREE;
-			case 4:
-				return Position.STRAIGHT_FOUR;
-			case 5:
-				return Position.STRAIGHT_FIVE;
-			case 6:
-				return Position.STRAIGHT_SIX;
-			case 7:
-				return Position.STRAIGHT_SEVEN;
-			default:
-				return null;
-		}
 	}
 
 	@Override

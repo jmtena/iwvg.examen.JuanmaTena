@@ -8,7 +8,7 @@ import iwvg.prac2.controllers.MoveController;
 import iwvg.prac2.controllers.StartController;
 import iwvg.prac2.utils.Option;
 
-public class KlondikeView implements OperationControllerVisitor, View{
+public class KlondikeView implements OperationControllerVisitor{
 	
 	private StartView startView;
 	
@@ -26,7 +26,6 @@ public class KlondikeView implements OperationControllerVisitor, View{
 		exitView = new ExitView();
 	}
 	
-	@Override
 	public Option interact(Controller controller){
 		assert controller != null;
 		return controller.accept(this);

@@ -16,24 +16,9 @@ public class DiscardToSuitController extends MoveController{
 		Position destiny;
 		
 		int option = new LimitedIntDialog("A que palo desea mover [1.Picas 2.Corazones 3.Rombos 4.Treboles]?", 1, 4).read();
-		destiny = getSuit(option);
+		destiny = this.game.getSuit(option);
 		
 		return this.game.moveCard(origin,destiny);
-	}
-	
-	private Position getSuit(int option){
-		switch(option){
-			case 1:
-				return Position.SPADES;
-			case 2:
-				return Position.HEARTS;
-			case 3:
-				return Position.DIAMONDS;
-			case 4:
-				return Position.CLUBS;
-			default:
-				return null;
-		}
 	}
 
 	@Override
