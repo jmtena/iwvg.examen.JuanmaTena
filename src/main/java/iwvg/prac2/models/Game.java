@@ -24,6 +24,10 @@ public class Game {
 		return state == State.FINISHED;
 	}
 	
+	public void initialize(){
+		rug.initialize();
+	}
+	
 	public void shuffle(){
 		rug.shuffle();
 	}

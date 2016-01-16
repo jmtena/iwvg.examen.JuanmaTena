@@ -92,6 +92,10 @@ public class SetOfCards {
 		return this.cards;
 	}
 	
+	public void clear(){
+		cards = new Card[0];
+	}
+	
 	@Override
 	public String toString(){
 		String set = "";
@@ -105,4 +109,5 @@ public class SetOfCards {
 		
 		return set;
 	}
+
 }

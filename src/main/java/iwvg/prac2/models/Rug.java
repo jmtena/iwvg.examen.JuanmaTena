@@ -35,7 +35,6 @@ public class Rug{
 		
 		for(int i=0; i<Game.getNumStraights(); i++)
 			straights[i] = new SetOfCards();
-		initialize();
 	}
 	
 	public void shuffle(){
@@ -232,7 +231,8 @@ public class Rug{
 		}
 	}
 	
-	private void initialize(){
+	public void initialize(){
+		clear();
 		//Ponemos todas las cartas en la baraja
 		for(Suit s: Suit.values()){
 			for(CardNumber number : CardNumber.values()){
@@ -240,6 +240,18 @@ public class Rug{
 				deck.addCard(card);
 			}
 		}		
+	}
+	
+	private void clear(){
+		deck.clear();
+		discard.clear();
+		spadesSuit.clear();
+		heartsSuit.clear();
+		diamondsSuit.clear();
+		clubsSuit.clear();
+		for (int i=0; i<straights.length; i++){
+			straights[i].clear();
+		}
 	}
 	
 	public boolean isComplete(){

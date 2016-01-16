@@ -40,4 +40,8 @@ public abstract class Controller implements OperationController{
 		return game.getStraight(pos);
 	}
 	
+	public boolean isGameFinished(){
+		return game.isFinished();
+	}
+	
 }

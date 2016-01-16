@@ -10,6 +10,9 @@ public class StartController extends Controller{
 	}
 	
 	public void start(){
+		//Inicializar los montones de cartas
+		this.game.initialize();
+		
 		//Barajar
 		this.game.shuffle();
 		
