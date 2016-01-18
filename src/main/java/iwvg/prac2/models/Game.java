@@ -1,7 +1,6 @@
 package iwvg.prac2.models;
 
 import iwvg.prac2.controllers.Error;
-import iwvg.prac2.utils.IO;
 
 public class Game {
 
@@ -63,151 +62,8 @@ public class Game {
 	}
 	
 	public void showPossibleMoves(){
-		showPossibleMovesFromDeck();
-		showPossibleMovesFromDiscard();
-		showPossibleMovesFromStraight();
-		showPossibleMovesFromSuit();
-		showPossibleTurnOverMoves();
-	}
-	
-	private void showPossibleMovesFromStraight(){
-		showPossibleMovesFromStraightToSuit();
-		showPossibleMovesFromStraightToStraight();
-	}
-	
-	private void showPossibleMovesFromStraightToStraight(){
-		for(int i=0; i<getNumStraights(); i++){
-			for(int j=0; j<getNumStraights(); j++){
-				SetOfCards originStraight = getStraight(i);
-				SetOfCards destinyStraight = getStraight(j);
-				//showPossibleMovesFromStraightToStraight(originStraight,destinyStraight);
-
-				
-				int numCardsInStraight = originStraight.getLength();
-				for(int k=0; k<numCardsInStraight; k++){
-					//Para cada escalera, se comprueba cuantas cartas se pueden mover
-					//Comprobamos la primera carta de la columna de cartas a mover
-					Card card = originStraight.getCard(originStraight.getLength()-1-numCardsInStraight-k);					
-					if (rug.isPosibleMoveToStraight(destinyStraight, card)){
-						new IO().write("Mover " + (k+1) + " cartas: " + getStraight(i).takeCard().toString() + " de Escalera " + (i+1) + " a Escalera " + (j+1) + " sobre " + getStraight(j).takeCard().toString());
-					}
-				}
-				
-				
-				
-				 
-				
-			}
-		}
-	}
-	
-	private void showPossibleMovesFromStraightToSuit(){
-		showPossibleMovesFromStraightToSpades();
-		showPossibleMovesFromStraightToHearts();
-		showPossibleMovesFromStraightToDiamonds();
-		showPossibleMovesFromStraightToClubs();
-	}
-	
-	private void showPossibleMovesFromStraightToClubs(){
-		for(int i=0; i<getNumStraights(); i++){
-			Position straight = this.getPile(i+1);
-			if (rug.isPossibleMove(straight, Position.CLUBS)){
-				new IO().write("Mover " + getStraight(i).takeCard().toString() + " de Escalera " + (i+1) + " a Palo Treboles sobre " + getClubsPile().takeCard().toString());
-			}
-		}
-	}
-	
-	private void showPossibleMovesFromStraightToDiamonds(){
-		for(int i=0; i<getNumStraights(); i++){
-			Position straight = this.getPile(i+1);
-			if (rug.isPossibleMove(straight, Position.DIAMONDS)){
-				new IO().write("Mover " + getStraight(i).takeCard().toString() + " de Escalera " + (i+1) + " a Palo Rombos sobre " + getDiamondsPile().takeCard().toString());
-			}
-		}
-	}
-	
-	private void showPossibleMovesFromStraightToHearts(){
-		for(int i=0; i<getNumStraights(); i++){
-			Position straight = this.getPile(i+1);
-			if (rug.isPossibleMove(straight, Position.HEARTS)){
-				new IO().write("Mover " + getStraight(i).takeCard().toString() + " de Escalera " + (i+1) + " a Palo Corazones sobre " + getHeartsPile().takeCard().toString());
-			}
-		}
-	}
-	
-	private void showPossibleMovesFromStraightToSpades(){
-		for(int i=0; i<getNumStraights(); i++){
-			Position straight = this.getPile(i+1);
-			if (rug.isPossibleMove(straight, Position.SPADES)){
-				new IO().write("Mover " + getStraight(i).takeCard().toString() + " de Escalera " + (i+1) + " a Palo Picas sobre " + getSpadesPile().takeCard().toString());
-			}
-		}
-	}
-	
-	private void showPossibleMovesFromDeck(){
-		showPossibleMovesFromDeckToDiscard();
-	}
-	
-	private void showPossibleMovesFromDeckToDiscard(){
-		if (rug.isPossibleMove(Position.DECK, Position.DISCARD)){
-			int numcards = rug.getDeck().getLength();
-			IO io = new IO();
-			io.writeln("Mover " + numcards + " como maximo de baraja a descarte");
-		}
-	}
-	
-	private void showPossibleMovesFromDiscard(){
-		showPossibleMovesFromDiscardToDeck();
-		showPossibleMovesFromDiscardToSuit();
-		showPossibleMovesFromDiscardToStraight();
-	}
-	
-	private void showPossibleMovesFromDiscardToStraight(){
-		for(int i=0; i<getNumStraights(); i++){
-			Position straight = this.getPile(i+1);
-			if (rug.isPossibleMove(Position.DISCARD, straight)){
-				new IO().write("Mover " + getDiscard().takeCard().toString() + " de Descarte a Escalera " + (i+1) + " sobre " + getStraight(i).takeCard().toString());
-			}
-		}
-	}
-	
-	private void showPossibleMovesFromDiscardToDeck(){
-		if (rug.isPossibleMove(Position.DISCARD, Position.DECK)){
-			int numcards = rug.getDiscard().getLength();
-			IO io = new IO();
-			io.writeln("Mover " + numcards + " como maximo de descarte a baraja");
-		}
-	}
-	
-	private void showPossibleMovesFromDiscardToSuit(){
-		showPossibleMovesFromDiscardToSpades();
-		showPossibleMovesFromDiscardToHearts();
-		showPossibleMovesFromDiscardToDiamonds();
-		showPossibleMovesFromDiscardToClubs();
-	}
-	
-	private void showPossibleMovesFromDiscardToSpades(){
-		if (rug.isPossibleMove(Position.DISCARD, Position.SPADES)){
-			new IO().write("Mover " + getDiscard().takeCard().toString() + " de Descarte a Palo Picas sobre " + getSpadesPile().takeCard().toString());
-		}
-	}
-	
-	private void showPossibleMovesFromDiscardToHearts(){
-		if (rug.isPossibleMove(Position.DISCARD, Position.HEARTS)){
-			new IO().write("Mover " + getDiscard().takeCard().toString() + " de Descarte a Palo Corazones sobre " + getHeartsPile().takeCard().toString());
-		}
-	}
-	
-	private void showPossibleMovesFromDiscardToDiamonds(){
-		if (rug.isPossibleMove(Position.DISCARD, Position.DIAMONDS)){
-			new IO().write("Mover " + getDiscard().takeCard().toString() + " de Descarte a Palo Rombos sobre " + getDiamondsPile().takeCard().toString());
-		}
-	}
-	
-	private void showPossibleMovesFromDiscardToClubs(){
-		if (rug.isPossibleMove(Position.DISCARD, Position.CLUBS)){
-			new IO().write("Mover " + getDiscard().takeCard().toString() + " de Descarte a Palo Treboles sobre " + getClubsPile().takeCard().toString());
-		}
+		Help help = new Help(this);
+		help.showPossibleMoves();
 	}
 
 	public SetOfCards getDeck() {
@@ -238,6 +94,10 @@ public class Game {
 		return rug.getStraight(pos);
 	}
 
+	public Rug getRug(){
+		return rug;
+	}
+	
 	public Position getPile(int option) {
 		switch (option) {
 		case 1:

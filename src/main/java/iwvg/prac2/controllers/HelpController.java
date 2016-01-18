@@ -11,14 +11,10 @@ public class HelpController extends Controller{
 	}
 	
 	public void showHelp(){
-		showPosibilities();
+		game.showPossibleMoves();
 		
 		IO io = new IO();
 		io.readString("[continuar]");
-	}
-	
-	private void showPosibilities(){
-		game.showPossibleMoves();
 	}
 
 	@Override
