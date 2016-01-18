@@ -4,6 +4,7 @@ import iwvg.prac2.controllers.ContinueController;
 import iwvg.prac2.controllers.Controller;
 import iwvg.prac2.controllers.OperationControllerVisitor;
 import iwvg.prac2.controllers.ExitController;
+import iwvg.prac2.controllers.HelpController;
 import iwvg.prac2.controllers.MoveController;
 import iwvg.prac2.controllers.StartController;
 import iwvg.prac2.utils.Option;
@@ -13,6 +14,8 @@ public class KlondikeView implements OperationControllerVisitor {
 	private StartView startView;
 
 	private GameView gameView;
+	
+	private HelpView helpView;
 
 	private ContinueView continueView;
 
@@ -21,6 +24,7 @@ public class KlondikeView implements OperationControllerVisitor {
 	public KlondikeView() {
 		startView = new StartView();
 		gameView = new GameView();
+		helpView = new HelpView();
 		continueView = new ContinueView();
 		exitView = new ExitView();
 	}
@@ -33,6 +37,11 @@ public class KlondikeView implements OperationControllerVisitor {
 	@Override
 	public Option visit(StartController startController) {
 		return startView.interact(startController);
+	}
+	
+	@Override
+	public Option visit(HelpController helpController) {
+		return helpView.interact(helpController);
 	}
 
 	@Override

@@ -9,7 +9,7 @@ public class Game {
 	private Rug rug;
 
 	private static final int NUM_STRAIGHTS = 7;
-	private static final int NUM_OPTIONS = 9;
+	private static final int NUM_OPTIONS = 10;
 
 	public Game() {
 		state = State.IN_GAME;

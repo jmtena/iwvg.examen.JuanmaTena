@@ -9,6 +9,8 @@ public class Logic {
 	private StartController startController;
 
 	private MoveControllerFactory moveControllerFactory;
+	
+	private HelpController helpController;
 
 	private ExitController exitController;
 
@@ -17,6 +19,7 @@ public class Logic {
 	public Logic() {
 		game = new Game();
 		startController = new StartController(game);
+		helpController = new HelpController(game);
 		moveControllerFactory = new MoveControllerFactory(game);
 		exitController = new ExitController(game);
 		continueController = new ContinueController(game);
@@ -45,6 +48,8 @@ public class Logic {
 			return moveControllerFactory.getSuitToStraightController();
 		case TURN_OVER:
 			return moveControllerFactory.getTurnOverController();
+		case HELP:
+			return helpController;
 		case EXIT:
 			return exitController;
 		case CONTINUE:
