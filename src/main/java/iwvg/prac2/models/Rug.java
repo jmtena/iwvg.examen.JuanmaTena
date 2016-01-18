@@ -84,8 +84,26 @@ public class Rug {
 		}
 		return error;
 	}
+	
+	public boolean isPossibleMove(Position origin, Position destiny) {
+		assert origin != null;
+		assert destiny != null;
+		boolean possibleMove = false;
+		SetOfCards originPile = getPile(origin);
+		SetOfCards destinyPile = getPile(destiny);
 
-	private boolean isPosibleMove(Position destiny, SetOfCards destinyPile, Card card) {
+		possibleMove = (originPile.getLength() > 0);
+		if (possibleMove) {
+			Card card = originPile.takeCard();
+			possibleMove = (card.getOrientation() == Orientation.FACE_UP);
+			if (possibleMove) {
+				possibleMove = isPosibleMove(destiny, destinyPile, card);
+			}
+		}
+		return possibleMove;
+	}
+
+	public boolean isPosibleMove(Position destiny, SetOfCards destinyPile, Card card) {
 		boolean possibleMove;
 
 		if (isToSuitMove(destiny))
@@ -101,7 +119,7 @@ public class Rug {
 				|| (pos == Position.CLUBS);
 	}
 
-	private boolean isPosibleMoveToStraight(SetOfCards pile, Card new_card) {
+	public boolean isPosibleMoveToStraight(SetOfCards pile, Card new_card) {
 		Card last_card = pile.takeCard();
 
 		// Mismo color y carta anterior de mayor valor que la nueva
@@ -269,6 +287,10 @@ public class Rug {
 		}
 		complete = empty_deck && empty_discard && empty_straights;
 		return complete;
+	}
+	
+	public void showPossibleMoves(){
+		
 	}
 
 	public SetOfCards getDeck() {

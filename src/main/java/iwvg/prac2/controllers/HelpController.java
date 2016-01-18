@@ -18,7 +18,7 @@ public class HelpController extends Controller{
 	}
 	
 	private void showPosibilities(){
-		
+		game.showPossibleMoves();
 	}
 
 	@Override

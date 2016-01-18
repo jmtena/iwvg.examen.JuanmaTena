@@ -61,7 +61,7 @@ public class SetOfCards {
 		this.cards = new_cards.getSetOfCards();
 	}
 
-	private Card getCard(int pos) {
+	public Card getCard(int pos) {
 		return cards[pos];
 	}
 
